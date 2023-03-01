@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Poppins&family=Roboto:wght@300&display=swap');
+:root {
+    --black: #131313;
+    --offblack: #29292b;
+    --grey: rgb(174, 174, 174);
+    --greydark: rgb(113, 113, 113);
+    --greyback: rgb(174,174,174,0.3);
+    --white: #fff;
+}
+
+body {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  background-color: var(--black);
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+button {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 15px;
+}
+
+#header {
+  padding: 10px;
+  color: var(--white);
+  font-size: 26px;
+  display: flex;
+}
+
+#header button {
+  background-color: transparent;
+}
+
+#header button:hover{
+  background-color: var(--offblack);
+  border: var(--greydark) 1px solid;
+}
+
+#monthDisplay{
+  margin-left: 30px;
+}
+
+#container {
+  width: 770px;
+}
+
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: var(--grey);
+}
+
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+
+#calendar {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: var(--white);
+  background-color: var(--offblack);
+  margin: 5px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.day:hover {
+  background-color: var(--greyback);
+  transform: scale(105%);
+  transition: all 0.2s ease-out;
+}
+
+.day + #currentDay {
+  background-color: rgb(255, 162, 31);
+}
+
+.padding {
+  cursor: default;
+  background-color: var(--greyback);
+  box-shadow: none;
+}
