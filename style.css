@@ -100,3 +100,10 @@ button {
   background-color: var(--greyback);
   box-shadow: none;
 }
+
+#event_maker {
+  display: none;
+  background-color: blue;
+  width: 500px;
+  height: 500px;
+}
