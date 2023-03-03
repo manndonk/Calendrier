@@ -83,7 +83,7 @@ function load() {
   // Chargement des évènements
       for (let i = 0; i < evenements.length; i++) {
         if (evenements[i][3].slice(2) == remplir(month) + year.toString()) {
-          const element_evenement = document.createElement("div");
+          const element_evenement = document.createElement("newevents");
           element_evenement.addEventListener("click", function (event) {
             event.stopPropagation();
             // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
@@ -91,6 +91,7 @@ function load() {
           element_evenement.style.backgroundColor = evenements[i][2];
           element_evenement.style.height = "5px";
           element_evenement.style.borderRadius = "5px";
+          element_evenement.style.transition = "all 1s ease"
 
           const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
           carre_jour.style.display = "flex";

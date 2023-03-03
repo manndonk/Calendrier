@@ -104,7 +104,6 @@ textarea {
 
 .day:hover {
   background-color: var(--greyback);
-  transform: scale(105%);
   transition: all 0.2s ease-out;
 }
 
@@ -221,3 +220,6 @@ textarea::placeholder{
   border: 1px solid var(--white);
 }
 
+newevents:hover{
+  transform: scale(110%);
+}
