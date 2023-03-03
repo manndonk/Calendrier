@@ -65,7 +65,7 @@ function load() {
       daySquare.addEventListener("click", function () {
         date_selection = this.jour_num;
         console.log(date_selection);
-        document.getElementById("creation_evenement").style.display = "block";
+        document.getElementById("creation_evenement").style.display = "flex";
         document.getElementById("date").innerText = this.jour_alph;
       })
 
@@ -88,10 +88,14 @@ function load() {
             event.stopPropagation();
             // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
           });
-          element_evenement.innerText = evenements[i][0];
           element_evenement.style.backgroundColor = evenements[i][2];
+          element_evenement.style.height = "5px";
+          element_evenement.style.borderRadius = "5px";
 
           const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
+          carre_jour.style.display = "flex";
+          carre_jour.style.flexDirection = "column";
+          carre_jour.style.justifyContent="space-between";
           carre_jour.appendChild(element_evenement);
         }
       }
