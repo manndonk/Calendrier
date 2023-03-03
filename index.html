@@ -28,8 +28,12 @@
       </div>
 
       <div id="calendar"></div>
-      <div id="event_maker">
-        This is where you make an event.
+      <div id="creation_evenement">
+        Évènement le <p id="date"></p>
+        <div class="saisie">Titre: <textarea id="titre"></textarea></div>
+        <div class="saisie">Description: <textarea id="desc"></textarea></div>
+        <div class="saisie">Couleur: <input type="color" id="couleur"></div><br>
+        <div class="saisie"><button id="creer" onclick="creer_evenement()">Créer l'évènement</button></div>
       </div>
     </div>
 

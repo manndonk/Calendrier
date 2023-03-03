@@ -3,12 +3,25 @@ let nav = 0;
 const calendar = document.getElementById('calendar');
 const weekdays = ['dimance', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 
+let date_selection;
+let evenements = [];
+
 function remplir(numero) {
   numero = numero.toString();
   while (numero.length < 2) {
     numero = "0" + numero;
   }
   return numero;
+}
+
+function creer_evenement() {
+  let evenement = [document.getElementById('titre').value, document.getElementById('desc').value, document.getElementById('couleur').value, date_selection]
+  document.getElementById('titre').value = '';
+  document.getElementById('desc').value = '';
+  document.getElementById('couleur').value = "#000000";
+  document.getElementById("creation_evenement").style.display = "none";
+  evenements.push(evenement);
+  load();
 }
 
 function load() {
@@ -46,11 +59,14 @@ function load() {
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
 
-      daySquare.num_day = remplir(i - paddingDays) + remplir(month + 1) + year;
-      daySquare.day = (i - paddingDays).toString() + " " + document.getElementById('monthDisplay').innerText;
+      daySquare.jour_num = remplir(i - paddingDays) + remplir(month) + year;
+      daySquare.jour_alph = (i - paddingDays).toString() + " " + document.getElementById('monthDisplay').innerText;
 
       daySquare.addEventListener("click", function () {
-        document.getElementById("event_maker").style.display = "flex";
+        date_selection = this.jour_num;
+        console.log(date_selection);
+        document.getElementById("creation_evenement").style.display = "block";
+        document.getElementById("date").innerText = this.jour_alph;
       })
 
       if (i - paddingDays === day && nav === 0) {
@@ -63,6 +79,22 @@ function load() {
 
     calendar.appendChild(daySquare);    
   }
+
+  // Chargement des évènements
+      for (let i = 0; i < evenements.length; i++) {
+        if (evenements[i][3].slice(2) == remplir(month) + year.toString()) {
+          const element_evenement = document.createElement("div");
+          element_evenement.addEventListener("click", function (event) {
+            event.stopPropagation();
+            // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
+          });
+          element_evenement.innerText = evenements[i][0];
+          element_evenement.style.backgroundColor = evenements[i][2];
+
+          const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
+          carre_jour.appendChild(element_evenement);
+        }
+      }
 }
 
 function initButtons() {

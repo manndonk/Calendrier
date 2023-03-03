@@ -28,6 +28,10 @@ button {
   font-size: 15px;
 }
 
+textarea {
+  resize: none;
+}
+
 #header {
   padding: 10px;
   color: var(--white);
@@ -101,9 +105,29 @@ button {
   box-shadow: none;
 }
 
-#event_maker {
+#creation_evenement {
   display: none;
-  background-color: blue;
-  width: 500px;
-  height: 500px;
+  background-color: rgb(66, 66, 66);
+  width: 100%;
+  color: var(--white);
+  margin-top: 20px;
+  text-align: center;
+}
+
+#creer {
+  width: 300px;
+  color: black;
+}
+
+#creer:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+#desc {
+  width: 200px;
+  height: 100px;
+}
+
+.saisie {
+  padding: 30px;
 }
