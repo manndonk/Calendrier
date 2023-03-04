@@ -316,5 +316,14 @@ function initButtons() {
   });
 }
 
+document.onkeydown = function (touche) {
+  if (touche.keyCode == '37') {
+    document.getElementById('prev').click();
+  }
+  else if (touche.keyCode == '39') {
+    document.getElementById('next').click();
+  }
+}
+
 initButtons();
 load();
