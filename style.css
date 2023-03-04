@@ -8,20 +8,32 @@
     --white: #fff;
 }
 
+*{
+  z-index: 3;
+}
+
 body {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
+  align-items: center;
   background-color: var(--black);
   font-family: 'Kumbh Sans', sans-serif;
+  height: 100vh;
+  background: url(autumn.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 calendrier {
   display: flex;
   justify-content:center;
-  background: #000;
   border-radius: 10px;
   padding: 30px 10px 10px 10px;
+  margin-bottom: 50px;
+  height: 645px;
+  width: 770px;
+  background: var(--black);
 }
 
 button {
@@ -45,6 +57,7 @@ textarea {
   color: var(--white);
   font-size: 26px;
   display: flex;
+  justify-content: space-between;
 }
 
 #header button {
@@ -54,10 +67,6 @@ textarea {
 #header button:hover{
   background-color: var(--offblack);
   border: var(--greydark) 1px solid;
-}
-
-#port{
-  margin-left: 327px;
 }
 
 #monthDisplay{
@@ -120,7 +129,7 @@ textarea {
 #creation_evenement{
   display: none;
   box-sizing: border-box;
-  margin: 220px 10px 0 20px;
+  margin: 170px 10px 0 20px;
   box-shadow: 0px 0px 3px #CBD4C2;
   flex-direction: column;
   height: 300px;
@@ -129,15 +138,33 @@ textarea {
   background: var(--offblack);
   border-radius: 10px;
   color: var(--white);
+  transition: all 3s ease;
+  left: 100%;
 }
 
-#event__title{
+#event{
+  display: none;
+  box-sizing: border-box;
+  margin: 170px 10px 0 20px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  flex-direction: column;
+  height: 300px;
+  width: 270px;
+  color: var(--white);
+  background: var(--offblack);
+  border-radius: 10px;
+  color: var(--white);
+  transition: all 3s ease;
+  left: 100%;
+}
+
+.event__title{
   margin: 17px 10px;
   display: flex;
   border-bottom: 1px solid var(--greyback);
 }
 
-#event__title textarea{
+.event__title textarea{
   background: transparent;
   border: none;
   box-shadow: none;
@@ -204,7 +231,7 @@ textarea::placeholder{
 
 #event__last{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #creer {
@@ -215,14 +242,23 @@ textarea::placeholder{
   font-size: large;
 }
 
+#annul{
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(185, 0, 0);
+  width: 75px;
+  font-size: large;
+  margin: 0 11.5px
+
+}
+
 #creer:hover{
   background:rgba(0, 0, 0, 0.4);
   border: 1px solid var(--white);
 }
 
-newevents:hover{
+/* newevents:hover{
   transform: scale(110%);
-}
+} */
 
 .neige {
   background-color: white;
@@ -230,6 +266,7 @@ newevents:hover{
   height: 10px;
   border-radius: 50%;
   position: absolute;
+  z-index: -1;
 }
 
 .feuille {
@@ -237,4 +274,5 @@ newevents:hover{
   width: 70px;
   height: 70px;
   position: absolute;
+  z-index: -1;
 }

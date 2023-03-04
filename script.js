@@ -217,7 +217,21 @@ function load() {
       element_evenement.style.backgroundColor = evenements[i][2];
       element_evenement.style.height = "5px";
       element_evenement.style.borderRadius = "5px";
-      element_evenement.style.transition = "all 1s ease"
+      element_evenement.style.transition = "all 0.5s ease";
+      element_evenement.style.textAlign = 'center';
+      element_evenement.addEventListener('mouseover', () => {
+        element_evenement.style.transform = 'scale(110%)';
+        element_evenement.style.height = "17px";
+        setTimeout(() => {
+        element_evenement.innerHTML = evenements[i][0];
+        }, 500);
+
+      })
+      element_evenement.addEventListener('mouseout', () => {
+        element_evenement.innerHTML = '';
+        element_evenement.style.transform = 'scale(100%)';
+        element_evenement.style.height = '5px';
+      })
 
       const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
       carre_jour.style.display = "flex";
@@ -240,6 +254,12 @@ function initButtons() {
     nav--;
     load();
   });
+}
+
+function hoverhighlight() {
+  document.getElementsByName('newevents').addEventListener('hover', () => {
+    
+  })
 }
 
 initButtons();
