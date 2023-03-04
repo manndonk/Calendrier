@@ -8,26 +8,54 @@ const weekdays = ['dimance', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 
 let date_selection;
 let evenements = [];
 
-const neiges = [];
-const nombre_neiges = 15;
-let anime;
-const page = document.getElementsByTagName("calendrier")[0];
-  for (let i = 0; i < nombre_neiges; i++) {
-    const neige = document.createElement("div");
-    neige.setAttribute("class", "neige");
-    neige.y = Math.random()*screen.height;
-    neige.x = i*screen.width/nombre_neiges;
-    neiges.push(neige);
-  }
 
-function animation() {
+// POUR ANIMATIONS
+const page = document.getElementsByTagName("calendrier")[0];
+
+// POUR ANIMATION DE L'AUTOMNE
+const feuilles = [];
+const nombre_feuilles = 9;
+let anime_automne;
+for (let i = 0; i < nombre_feuilles; i++) {
+  const feuille = document.createElement("div");
+  feuille.setAttribute("class", "feuille");
+  feuille.y = Math.random()*screen.height;
+  feuille.x = i*screen.width/nombre_feuilles;
+  feuille.rotation = Math.random()*360;
+  feuilles.push(feuille);
+}
+
+function animation_automne() {
+  for (let i = 0; i < feuilles.length; i++) {
+      feuilles[i].y += 1;
+      feuilles[i].rotation += 0.5;
+      if (feuilles[i].y > screen.height) {
+          feuilles[i].y = Math.random()*(-20);
+      }
+      
+      feuilles[i].style.top = feuilles[i].y.toString() + "px";
+      feuilles[i].style.left = (Math.sin(feuilles[i].y*0.01)+feuilles[i].x).toString() + "px";
+      feuilles[i].style.webkitTransform = "rotate(" + feuilles[i].rotation.toString() + "deg)";
+  }
+}
+
+// POUR ANIMATION DE L'HIVER
+const neiges = [];
+const nombre_neiges = 20;
+let anime_hiver;
+for (let i = 0; i < nombre_neiges; i++) {
+  const neige = document.createElement("div");
+  neige.setAttribute("class", "neige");
+  neige.y = Math.random()*screen.height;
+  neige.x = i*screen.width/nombre_neiges;
+  neiges.push(neige);
+}
+
+function animation_hiver() {
   for (let i = 0; i < neiges.length; i++) {
-      neiges[i].y = (neiges[i].y+1);
+      neiges[i].y += 1;
       if (neiges[i].y > screen.height) {
           neiges[i].y = Math.random()*(-50);
-      }
-      if (i == 0) {
-          console.log(neiges[i].y)
       }
 
       neiges[i].style.top = neiges[i].y.toString() + "px";
@@ -150,19 +178,32 @@ function load() {
   }
 
   // ANIMATIONS
-  console.log(month + "  " + mois_precedent);
-  if ((month == 11 || month < 2) && (11 > mois_precedent && mois_precedent > 1)) { // MOIS CORRESPONDANT À L'HIVER
+  if ((month == 11 || month < 2) && (11 > mois_precedent && mois_precedent > 1)) { // MOIS CORRESPONDANT À L'HIVER, L'HIVER NE VENAIT PAS AVANT
       for (let i = 0; i < nombre_neiges; i++) {
         page.appendChild(neiges[i]);
       }
-      anime = setInterval(animation, 5);
+      anime_hiver = setInterval(animation_hiver, 5);
   }
 
-  else if (month !== 11 && month > 1) {
+  else if ((month !== 11 && month > 1) && (mois_precedent == 11 || mois_precedent < 2)) { // MOIS CORRESPONDANT PAS À L'HIVER, L'HIVER VENAIT AVANT
     for (let i = 0; i < nombre_neiges; i++) {
       page.removeChild(neiges[i]);
-      clearInterval(anime);
     }
+    clearInterval(anime_hiver);
+  }
+
+  if ((month > 7 && month < 11) && (mois_precedent == 11 || mois_precedent < 8)) { // MOIS CORRESPONDANT À L'AUTOMNE, L'AUTOMNE NE VENAIT PAS AVANT
+    for (let i = 0; i < nombre_feuilles; i++) {
+      page.appendChild(feuilles[i]);
+    }
+    anime_automne = setInterval(animation_automne, 5);
+  }
+
+  else if ((month < 8 || month == 11) && (mois_precedent > 7 && mois_precedent < 11)) { // MOIS CORRESPONDANT PAS À L'AUTOMNE, L'AUTOMNE VENAIT AVANT
+    for (let i = 0; i < nombre_feuilles; i++) {
+      page.removeChild(feuilles[i]);
+    }
+    clearInterval(anime_automne);
   }
 
   // Chargement des évènements

@@ -229,5 +229,12 @@ newevents:hover{
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  position: fixed;
+  position: absolute;
+}
+
+.feuille {
+  background-image: url("feuille.png");
+  width: 70px;
+  height: 70px;
+  position: absolute;
 }
