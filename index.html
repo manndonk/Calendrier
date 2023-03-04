@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <calendar>
+    <calendrier>
       <div id="container">
         <div id="header">
           <div>
@@ -21,8 +21,8 @@
             <button id="+zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
           </div>
           <div id="port">
-            <button id="import"><i class="fa-solid fa-upload"></i></button>
-            <button id="export"><i class="fa-solid fa-download"></i></button>
+            <button id="import" onclick="changer();"><i class="fa-solid fa-upload"></i></button>
+            <button id="export" onclick="exporter();"><i class="fa-solid fa-download"></i></button>
           </div>
         </div>
 
@@ -46,7 +46,7 @@
         </div>
         <br>
         <div class="event__time">
-          <i class="fa-solid fa-clock"></i><div class="saisie"><input type="time" id="time"></input></div>
+          <i class="fa-solid fa-clock"></i><div class="saisie"><input type="time" id="time" value="00:00"></div>
         </div>
         <div class="event__rest">
           <i class="fa-solid fa-location-dot"></i><div class="saisie"><textarea id="lieu" placeholder="Lieu"></textarea></div>
@@ -58,10 +58,8 @@
           <div class="saisie"><button id="creer" onclick="creer_evenement()">Sauvegarder</button></div>
         </div>
       </div>
-      <div>
-        
-      </div>
-    </calendar>
+      <div></div>
+    </calendrier>
 
     <script src="https://kit.fontawesome.com/032c2dd8c9.js" crossorigin="anonymous"></script>
     <script src="./script.js"></script>

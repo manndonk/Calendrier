@@ -16,7 +16,7 @@ body {
   font-family: 'Kumbh Sans', sans-serif;
 }
 
-calendar{
+calendrier {
   display: flex;
   justify-content:center;
   background: #000;
@@ -222,4 +222,12 @@ textarea::placeholder{
 
 newevents:hover{
   transform: scale(110%);
+}
+
+.neige {
+  background-color: white;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: fixed;
 }
