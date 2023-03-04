@@ -3,39 +3,72 @@ let month;
 let mois_precedent;
 
 const calendar = document.getElementById('calendar');
-const weekdays = ['dimance', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+const weekdays = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 
 let date_selection;
 let evenements = [];
 
 
+function change_arriere_plan(image) {
+  document.getElementsByTagName("body")[0].style.backgroundImage = "url('" + image + "')";
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundPosition = "center";
+}
+
 // POUR ANIMATIONS
-const page = document.getElementsByTagName("calendrier")[0];
+
+// POUR ANIMATION DE L'ÉTÉ
+const feuilles_ete = [];
+const nombre_feuilles_ete = 15;
+let anime_ete;
+for (let i = 0; i < nombre_feuilles_ete; i++) {
+  const feuille = document.createElement("div");
+  feuille.setAttribute("class", "feuille_ete");
+  feuille.y = Math.random()*window.innerHeight;
+  feuille.x = i*window.innerWidth/nombre_feuilles_ete;
+  feuille.rotation = Math.random()*360;
+  feuilles_ete.push(feuille);
+}
+
+function animation_ete() {
+  for (let i = 0; i < feuilles_ete.length; i++) {
+      feuilles_ete[i].y += 1;
+      feuilles_ete[i].rotation += 0.5;
+      if (feuilles_ete[i].y > window.innerHeight) {
+          feuilles_ete[i].y = Math.random()*(-20);
+      }
+      
+      feuilles_ete[i].style.top = feuilles_ete[i].y.toString() + "px";
+      feuilles_ete[i].style.left = (Math.sin(feuilles_ete[i].y*0.01)+feuilles_ete[i].x).toString() + "px";
+      feuilles_ete[i].style.webkitTransform = "rotate(" + feuilles_ete[i].rotation.toString() + "deg)";
+  }
+}
 
 // POUR ANIMATION DE L'AUTOMNE
-const feuilles = [];
-const nombre_feuilles = 9;
+const feuilles_automne = [];
+const nombre_feuilles_automne = 9;
 let anime_automne;
-for (let i = 0; i < nombre_feuilles; i++) {
+for (let i = 0; i < nombre_feuilles_automne; i++) {
   const feuille = document.createElement("div");
-  feuille.setAttribute("class", "feuille");
-  feuille.y = Math.random()*screen.height;
-  feuille.x = i*screen.width/nombre_feuilles;
+  feuille.setAttribute("class", "feuille_automne");
+  feuille.y = Math.random()*window.innerHeight;
+  feuille.x = i*window.innerWidth/nombre_feuilles_automne;
   feuille.rotation = Math.random()*360;
-  feuilles.push(feuille);
+  feuilles_automne.push(feuille);
 }
 
 function animation_automne() {
-  for (let i = 0; i < feuilles.length; i++) {
-      feuilles[i].y += 1;
-      feuilles[i].rotation += 0.5;
-      if (feuilles[i].y > screen.height) {
-          feuilles[i].y = Math.random()*(-20);
+  for (let i = 0; i < feuilles_automne.length; i++) {
+      feuilles_automne[i].y += 1;
+      feuilles_automne[i].rotation += 0.5;
+      if (feuilles_automne[i].y > window.innerHeight) {
+          feuilles_automne[i].y = Math.random()*(-20);
       }
       
-      feuilles[i].style.top = feuilles[i].y.toString() + "px";
-      feuilles[i].style.left = (Math.sin(feuilles[i].y*0.01)+feuilles[i].x).toString() + "px";
-      feuilles[i].style.webkitTransform = "rotate(" + feuilles[i].rotation.toString() + "deg)";
+      feuilles_automne[i].style.top = feuilles_automne[i].y.toString() + "px";
+      feuilles_automne[i].style.left = (Math.sin(feuilles_automne[i].y*0.01)+feuilles_automne[i].x).toString() + "px";
+      feuilles_automne[i].style.webkitTransform = "rotate(" + feuilles_automne[i].rotation.toString() + "deg)";
   }
 }
 
@@ -46,15 +79,15 @@ let anime_hiver;
 for (let i = 0; i < nombre_neiges; i++) {
   const neige = document.createElement("div");
   neige.setAttribute("class", "neige");
-  neige.y = Math.random()*screen.height;
-  neige.x = i*screen.width/nombre_neiges;
+  neige.y = Math.random()*window.innerHeight;
+  neige.x = i*window.innerWidth/nombre_neiges;
   neiges.push(neige);
 }
 
 function animation_hiver() {
   for (let i = 0; i < neiges.length; i++) {
       neiges[i].y += 1;
-      if (neiges[i].y > screen.height) {
+      if (neiges[i].y > window.innerHeight) {
           neiges[i].y = Math.random()*(-50);
       }
 
@@ -69,6 +102,10 @@ function remplir(numero) {
     numero = "0" + numero;
   }
   return numero;
+}
+
+function annuler() {
+  document.getElementById("creation_evenement").style.display = "none";
 }
 
 function creer_evenement() {
@@ -145,6 +182,8 @@ function load() {
   });
 
   const paddingDays = weekdays.indexOf(dateString.split(' ')[0]);
+  console.log(dateString);
+  console.log(paddingDays);
 
   document.getElementById('monthDisplay').innerText = 
     `${dt.toLocaleDateString('fr', { month: 'long' })} ${year}`;
@@ -178,32 +217,53 @@ function load() {
   }
 
   // ANIMATIONS
-  if ((month == 11 || month < 2) && (11 > mois_precedent && mois_precedent > 1)) { // MOIS CORRESPONDANT À L'HIVER, L'HIVER NE VENAIT PAS AVANT
-      for (let i = 0; i < nombre_neiges; i++) {
-        page.appendChild(neiges[i]);
-      }
-      anime_hiver = setInterval(animation_hiver, 5);
+  if (((month == 11 || month < 2) && ((11 > mois_precedent && mois_precedent > 1) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'HIVER, L'HIVER NE VENAIT PAS AVANT
+    change_arriere_plan("images/winter.jpg");
+    for (let i = 0; i < nombre_neiges; i++) {
+      document.body.appendChild(neiges[i]);
+    }
+    anime_hiver = setInterval(animation_hiver, 5);
   }
 
   else if ((month !== 11 && month > 1) && (mois_precedent == 11 || mois_precedent < 2)) { // MOIS CORRESPONDANT PAS À L'HIVER, L'HIVER VENAIT AVANT
     for (let i = 0; i < nombre_neiges; i++) {
-      page.removeChild(neiges[i]);
+      document.body.removeChild(neiges[i]);
     }
     clearInterval(anime_hiver);
   }
 
-  if ((month > 7 && month < 11) && (mois_precedent == 11 || mois_precedent < 8)) { // MOIS CORRESPONDANT À L'AUTOMNE, L'AUTOMNE NE VENAIT PAS AVANT
-    for (let i = 0; i < nombre_feuilles; i++) {
-      page.appendChild(feuilles[i]);
+  if ((month > 7 && month < 11) && ((mois_precedent == 11 || mois_precedent < 8) || mois_precedent == undefined)) { // MOIS CORRESPONDANT À L'AUTOMNE, L'AUTOMNE NE VENAIT PAS AVANT
+    change_arriere_plan("images/autumn.jpg");
+    for (let i = 0; i < nombre_feuilles_automne; i++) {
+      document.body.appendChild(feuilles_automne[i]);
     }
     anime_automne = setInterval(animation_automne, 5);
   }
 
   else if ((month < 8 || month == 11) && (mois_precedent > 7 && mois_precedent < 11)) { // MOIS CORRESPONDANT PAS À L'AUTOMNE, L'AUTOMNE VENAIT AVANT
-    for (let i = 0; i < nombre_feuilles; i++) {
-      page.removeChild(feuilles[i]);
+    for (let i = 0; i < nombre_feuilles_automne; i++) {
+      document.body.removeChild(feuilles_automne[i]);
     }
     clearInterval(anime_automne);
+  }
+
+  if (((month > 4 && month < 8) && ((mois_precedent < 5 || mois_precedent > 7) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'ÉTÉ, L'ÉTÉ VENAIT PAS AVANT
+    change_arriere_plan("images/summer.jpg");
+    for (let i = 0; i < nombre_feuilles_ete; i++) {
+      document.body.appendChild(feuilles_ete[i]);
+    }
+    anime_ete = setInterval(animation_ete, 5);
+  }
+
+  else if ((mois_precedent > 4 && mois_precedent < 8) && (month < 5 || month > 7)) {
+    for (let i = 0; i < nombre_feuilles_ete; i++) {
+      document.body.removeChild(feuilles_ete[i]);
+    }
+    clearInterval(anime_ete);
+  }
+
+  if (((month > 1 && month < 5) && ((mois_precedent < 2 || mois_precedent > 4) || mois_precedent == undefined))) { // MOIS CORRESPONDANT AU PRINTEMPS , LE PRINTEMPS VENAIT PAS AVANT
+    change_arriere_plan("images/spring.jpg");
   }
 
   // Chargement des évènements
@@ -221,7 +281,7 @@ function load() {
       element_evenement.style.textAlign = 'center';
       element_evenement.addEventListener('mouseover', () => {
         element_evenement.style.transform = 'scale(110%)';
-        element_evenement.style.height = "17px";
+        element_evenement.style.height = "fit-content";
         setTimeout(() => {
         element_evenement.innerHTML = evenements[i][0];
         }, 500);
@@ -254,12 +314,6 @@ function initButtons() {
     nav--;
     load();
   });
-}
-
-function hoverhighlight() {
-  document.getElementsByName('newevents').addEventListener('hover', () => {
-    
-  })
 }
 
 initButtons();

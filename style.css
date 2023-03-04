@@ -19,10 +19,10 @@ body {
   background-color: var(--black);
   font-family: 'Kumbh Sans', sans-serif;
   height: 100vh;
-  background: url(autumn.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  overflow-y: hidden;
 }
 
 calendrier {
@@ -31,9 +31,9 @@ calendrier {
   border-radius: 10px;
   padding: 30px 10px 10px 10px;
   margin-bottom: 50px;
-  height: 645px;
-  width: 770px;
+  height: fit-content;
   background: var(--black);
+  transform: scale(80%);
 }
 
 button {
@@ -143,7 +143,7 @@ textarea {
 }
 
 #event{
-  display: none;
+  /* display: none; */
   box-sizing: border-box;
   margin: 170px 10px 0 20px;
   box-shadow: 0px 0px 3px #CBD4C2;
@@ -256,10 +256,6 @@ textarea::placeholder{
   border: 1px solid var(--white);
 }
 
-/* newevents:hover{
-  transform: scale(110%);
-} */
-
 .neige {
   background-color: white;
   width: 10px;
@@ -269,8 +265,16 @@ textarea::placeholder{
   z-index: -1;
 }
 
-.feuille {
-  background-image: url("feuille.png");
+.feuille_automne {
+  background-image: url("images/feuille.png");
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  z-index: -1;
+}
+
+.feuille_ete {
+  background-image: url("images/feuille_verte.png");
   width: 70px;
   height: 70px;
   position: absolute;
