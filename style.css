@@ -78,6 +78,51 @@ textarea {
   width: 770px;
 }
 
+#dezoom {
+  display: none;
+}
+
+#dezoom > a > div {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: var(--white);
+  background-color: var(--offblack);
+  margin: 5px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+}
+
+#dezoom > a > div:hover {
+  background-color: var(--greyback);
+  transition: all 0.2s ease-out;
+}
+
+#prev_annuelle {
+  display: inline;
+}
+
+#afficheAnDezoom {
+  display: inline-block;
+  font-size: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0px;
+  color: white;
+}
+
+#change_date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
 #weekdays {
   width: 100%;
   display: flex;
@@ -242,7 +287,7 @@ textarea::placeholder{
   font-size: large;
 }
 
-#annul{
+#annul {
   background-color: rgba(0, 0, 0, 0.2);
   border: 1px solid rgb(185, 0, 0);
   width: 75px;
@@ -278,5 +323,15 @@ textarea::placeholder{
   width: 70px;
   height: 70px;
   position: absolute;
+  z-index: -1;
+}
+
+.goutte {
+  background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(13,52,58,1) ), to(rgba(255,255,255,0.6)));
+  background: -moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,.6) 100%);
+  width: 2px;
+  height:89px;
+  position: absolute;
+  bottom:200px;
   z-index: -1;
 }

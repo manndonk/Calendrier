@@ -1,6 +1,8 @@
 let nav = 0;
 let month;
 let mois_precedent;
+let year;
+let an_vision_annuelle; 
 
 const calendar = document.getElementById('calendar');
 const weekdays = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
@@ -8,6 +10,14 @@ const weekdays = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi',
 let date_selection;
 let evenements = [];
 
+let en_zoom = true;
+function dezoom() {
+  en_zoom = false;
+  document.getElementById("container").style.display = "none";
+  document.getElementById("dezoom").style.display = "block";
+  document.getElementById("afficheAnDezoom").innerText = year;
+  document.getElementById("creation_evenement").style.display = "none";
+}
 
 function change_arriere_plan(image) {
   document.getElementsByTagName("body")[0].style.backgroundImage = "url('" + image + "')";
@@ -63,12 +73,35 @@ function animation_automne() {
       feuilles_automne[i].y += 1;
       feuilles_automne[i].rotation += 0.5;
       if (feuilles_automne[i].y > window.innerHeight) {
-          feuilles_automne[i].y = Math.random()*(-20);
+          feuilles_automne[i].y = Math.random()*(-20) - 20;
       }
       
       feuilles_automne[i].style.top = feuilles_automne[i].y.toString() + "px";
       feuilles_automne[i].style.left = (Math.sin(feuilles_automne[i].y*0.01)+feuilles_automne[i].x).toString() + "px";
       feuilles_automne[i].style.webkitTransform = "rotate(" + feuilles_automne[i].rotation.toString() + "deg)";
+  }
+}
+
+// POUR ANIMATION DE PRINTEMPS
+const gouttes = [];
+const nombre_gouttes = 30;
+let anime_printemps;
+for (let i = 0; i < nombre_gouttes; i++) {
+    const goutte = document.createElement("div");
+    goutte.setAttribute("class", "goutte");
+    goutte.y = Math.random()*window.innerHeight;
+    goutte.x = i*window.innerWidth/nombre_gouttes;
+    gouttes.push(goutte);
+}
+
+function animation_printemps() {
+  for (let i = 0; i < gouttes.length; i++) {
+      gouttes[i].y += 20;
+      if (gouttes[i].y > window.innerHeight) {
+          gouttes[i].y = Math.random()*(-50);
+      }
+      gouttes[i].style.top = gouttes[i].y.toString() + "px";
+      gouttes[i].style.left = gouttes[i].x.toString() + "px";
   }
 }
 
@@ -169,7 +202,7 @@ function load() {
 
   const day = dt.getDate();
   month = dt.getMonth();
-  const year = dt.getFullYear();
+  year = an_vision_annuelle = dt.getFullYear();
 
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -255,7 +288,7 @@ function load() {
     anime_ete = setInterval(animation_ete, 5);
   }
 
-  else if ((mois_precedent > 4 && mois_precedent < 8) && (month < 5 || month > 7)) {
+  else if ((mois_precedent > 4 && mois_precedent < 8) && (month < 5 || month > 7)) { // MOIS CORRESPONDANT PAS À L'ÉTÉ, L'ÉTÉ VENAIT AVANT
     for (let i = 0; i < nombre_feuilles_ete; i++) {
       document.body.removeChild(feuilles_ete[i]);
     }
@@ -264,6 +297,17 @@ function load() {
 
   if (((month > 1 && month < 5) && ((mois_precedent < 2 || mois_precedent > 4) || mois_precedent == undefined))) { // MOIS CORRESPONDANT AU PRINTEMPS , LE PRINTEMPS VENAIT PAS AVANT
     change_arriere_plan("images/spring.jpg");
+    for (let i = 0; i < nombre_gouttes; i++) {
+      document.body.appendChild(gouttes[i]);
+    }
+    anime_printemps = setInterval(animation_printemps, 5);
+  }
+
+  else if ((mois_precedent > 1 && mois_precedent < 5) && (month < 2 || month > 4)) {
+    for (let i = 0; i < nombre_gouttes; i++) {
+      document.body.removeChild(gouttes[i]);
+    }
+    clearInterval(anime_printemps);
   }
 
   // Chargement des évènements
@@ -302,6 +346,28 @@ function load() {
   }
 }
 
+mois_vue_annuelle = document.querySelectorAll("#dezoom > a");
+for (let i = 0; i < mois_vue_annuelle.length; i++) {
+  mois_vue_annuelle[i].addEventListener("click", mois_cliquer);
+}
+
+function mois_cliquer() {
+  console.log(this);
+  let index_mois;
+  for (let i = 0; i < mois_vue_annuelle.length; i++) {
+    if (mois_vue_annuelle[i] == this) {
+      index_mois = i;
+      break;
+    }
+  }
+  en_zoom = true;
+  document.getElementById("container").style.display = "block";
+  document.getElementById("dezoom").style.display = "none";
+  nav += (an_vision_annuelle - year)*12 - month + index_mois;
+  mois_precedent = month;
+  load();
+}
+
 function initButtons() {
   document.getElementById('next').addEventListener('click', () => {
     mois_precedent = month;
@@ -314,14 +380,25 @@ function initButtons() {
     nav--;
     load();
   });
-}
 
-document.onkeydown = function (touche) {
-  if (touche.keyCode == '37') {
-    document.getElementById('prev').click();
-  }
-  else if (touche.keyCode == '39') {
-    document.getElementById('next').click();
+  document.getElementById("next_annuelle").addEventListener('click', () => {
+    an_vision_annuelle++;
+    document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle;
+  })
+  document.getElementById("prev_annuelle").addEventListener('click', () => {
+    an_vision_annuelle--;
+    document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle;
+  })
+
+  document.onkeydown = function (touche) {
+    if (en_zoom) {
+      if (touche.key == 'ArrowLeft') {
+        document.getElementById('prev').click();
+      }
+      else if (touche.key == 'ArrowRight') {
+        document.getElementById('next').click();
+      }
+    }
   }
 }
 

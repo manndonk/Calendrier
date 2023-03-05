@@ -17,7 +17,7 @@
           </div>
           <div id="monthDisplay"></div>
           <div>
-            <button id="-zoom"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+            <button id="-zoom" onclick="dezoom()"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
             <button id="+zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
           </div>
           <div id="port">
@@ -37,7 +37,26 @@
         </div>
         
         <div id="calendar"></div>
+      </div>
 
+      <div id="dezoom">
+        <div id="change_date">
+          <button id="prev_annuelle"><i class="fa-solid fa-chevron-left"></i></button>
+          <p id="afficheAnDezoom"></p>
+          <button id="next_annuelle"><i class="fa-solid fa-chevron-right"></i></button><br>
+        </div>
+        <a><div>Janvier</div></a>
+        <a><div>Février</div></a>
+        <a><div>Mars</div></a><br>
+        <a><div>Avril</div></a>
+        <a><div>Mai</div></a>
+        <a><div>Juin</div></a><br>
+        <a><div>Juillet</div></a>
+        <a><div>Août</div></a>
+        <a><div>Septembre</div></a><br>
+        <a><div>Octobre</div></a>
+        <a><div>Novembre</div></a>
+        <a><div>Décembre</div></a>
       </div>
       <!-- <div id="event">
         <div class="event__title">
