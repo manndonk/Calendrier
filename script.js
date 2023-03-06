@@ -311,7 +311,7 @@ function load() {
       clearInterval(anime_printemps);
     }
   }
-  except {
+  finally {
   // Chargement des évènements
     for (let i = 0; i < evenements.length; i++) {
       if (evenements[i][3].slice(2) == remplir(month) + year.toString()) {
