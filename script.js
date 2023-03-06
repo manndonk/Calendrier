@@ -311,39 +311,40 @@ function load() {
       clearInterval(anime_printemps);
     }
   }
-
+  except {
   // Chargement des évènements
-  for (let i = 0; i < evenements.length; i++) {
-    if (evenements[i][3].slice(2) == remplir(month) + year.toString()) {
-      const element_evenement = document.createElement("newevents");
-      element_evenement.addEventListener("click", function (event) {
-        event.stopPropagation();
-        // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
-      });
-      element_evenement.style.backgroundColor = evenements[i][2];
-      element_evenement.style.height = "5px";
-      element_evenement.style.borderRadius = "5px";
-      element_evenement.style.transition = "all 0.5s ease";
-      element_evenement.style.textAlign = 'center';
-      element_evenement.addEventListener('mouseover', () => {
-        element_evenement.style.transform = 'scale(110%)';
-        element_evenement.style.height = "fit-content";
-        setTimeout(() => {
-        element_evenement.innerHTML = evenements[i][0];
-        }, 500);
+    for (let i = 0; i < evenements.length; i++) {
+      if (evenements[i][3].slice(2) == remplir(month) + year.toString()) {
+        const element_evenement = document.createElement("newevents");
+        element_evenement.addEventListener("click", function (event) {
+          event.stopPropagation();
+          // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
+        });
+        element_evenement.style.backgroundColor = evenements[i][2];
+        element_evenement.style.height = "5px";
+        element_evenement.style.borderRadius = "5px";
+        element_evenement.style.transition = "all 0.5s ease";
+        element_evenement.style.textAlign = 'center';
+        element_evenement.addEventListener('mouseover', () => {
+          element_evenement.style.transform = 'scale(110%)';
+          element_evenement.style.height = "fit-content";
+          setTimeout(() => {
+          element_evenement.innerHTML = evenements[i][0];
+          }, 500);
 
-      })
-      element_evenement.addEventListener('mouseout', () => {
-        element_evenement.innerHTML = '';
-        element_evenement.style.transform = 'scale(100%)';
-        element_evenement.style.height = '5px';
-      })
+        })
+        element_evenement.addEventListener('mouseout', () => {
+          element_evenement.innerHTML = '';
+          element_evenement.style.transform = 'scale(100%)';
+          element_evenement.style.height = '5px';
+        })
 
-      const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
-      carre_jour.style.display = "flex";
-      carre_jour.style.flexDirection = "column";
-      carre_jour.style.justifyContent="space-between";
-      carre_jour.appendChild(element_evenement);
+        const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
+        carre_jour.style.display = "flex";
+        carre_jour.style.flexDirection = "column";
+        carre_jour.style.justifyContent="space-between";
+        carre_jour.appendChild(element_evenement);
+      }
     }
   }
 }
