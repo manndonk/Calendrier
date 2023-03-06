@@ -250,64 +250,66 @@ function load() {
   }
 
   // ANIMATIONS
-  if (((month == 11 || month < 2) && ((11 > mois_precedent && mois_precedent > 1) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'HIVER, L'HIVER NE VENAIT PAS AVANT
-    change_arriere_plan("images/winter.jpg");
-    for (let i = 0; i < nombre_neiges; i++) {
-      document.body.appendChild(neiges[i]);
+  try {
+    if (((month == 11 || month < 2) && ((11 > mois_precedent && mois_precedent > 1) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'HIVER, L'HIVER NE VENAIT PAS AVANT
+      change_arriere_plan("images/winter.jpg");
+      for (let i = 0; i < nombre_neiges; i++) {
+        document.body.appendChild(neiges[i]);
+      }
+      anime_hiver = setInterval(animation_hiver, 5);
     }
-    anime_hiver = setInterval(animation_hiver, 5);
-  }
 
-  else if ((month !== 11 && month > 1) && (mois_precedent == 11 || mois_precedent < 2)) { // MOIS CORRESPONDANT PAS À L'HIVER, L'HIVER VENAIT AVANT
-    for (let i = 0; i < nombre_neiges; i++) {
-      document.body.removeChild(neiges[i]);
+    else if ((month !== 11 && month > 1) && (mois_precedent == 11 || mois_precedent < 2)) { // MOIS CORRESPONDANT PAS À L'HIVER, L'HIVER VENAIT AVANT
+      for (let i = 0; i < nombre_neiges; i++) {
+        document.body.removeChild(neiges[i]);
+      }
+      clearInterval(anime_hiver);
     }
-    clearInterval(anime_hiver);
-  }
 
-  if ((month > 7 && month < 11) && ((mois_precedent == 11 || mois_precedent < 8) || mois_precedent == undefined)) { // MOIS CORRESPONDANT À L'AUTOMNE, L'AUTOMNE NE VENAIT PAS AVANT
-    change_arriere_plan("images/autumn.jpg");
-    for (let i = 0; i < nombre_feuilles_automne; i++) {
-      document.body.appendChild(feuilles_automne[i]);
+    if ((month > 7 && month < 11) && ((mois_precedent == 11 || mois_precedent < 8) || mois_precedent == undefined)) { // MOIS CORRESPONDANT À L'AUTOMNE, L'AUTOMNE NE VENAIT PAS AVANT
+      change_arriere_plan("images/autumn.jpg");
+      for (let i = 0; i < nombre_feuilles_automne; i++) {
+        document.body.appendChild(feuilles_automne[i]);
+      }
+      anime_automne = setInterval(animation_automne, 5);
     }
-    anime_automne = setInterval(animation_automne, 5);
-  }
 
-  else if ((month < 8 || month == 11) && (mois_precedent > 7 && mois_precedent < 11)) { // MOIS CORRESPONDANT PAS À L'AUTOMNE, L'AUTOMNE VENAIT AVANT
-    for (let i = 0; i < nombre_feuilles_automne; i++) {
-      document.body.removeChild(feuilles_automne[i]);
+    else if ((month < 8 || month == 11) && (mois_precedent > 7 && mois_precedent < 11)) { // MOIS CORRESPONDANT PAS À L'AUTOMNE, L'AUTOMNE VENAIT AVANT
+      for (let i = 0; i < nombre_feuilles_automne; i++) {
+        document.body.removeChild(feuilles_automne[i]);
+      }
+      clearInterval(anime_automne);
     }
-    clearInterval(anime_automne);
-  }
 
-  if (((month > 4 && month < 8) && ((mois_precedent < 5 || mois_precedent > 7) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'ÉTÉ, L'ÉTÉ VENAIT PAS AVANT
-    change_arriere_plan("images/summer.jpg");
-    for (let i = 0; i < nombre_feuilles_ete; i++) {
-      document.body.appendChild(feuilles_ete[i]);
+    if (((month > 4 && month < 8) && ((mois_precedent < 5 || mois_precedent > 7) || mois_precedent == undefined))) { // MOIS CORRESPONDANT À L'ÉTÉ, L'ÉTÉ VENAIT PAS AVANT
+      change_arriere_plan("images/summer.jpg");
+      for (let i = 0; i < nombre_feuilles_ete; i++) {
+        document.body.appendChild(feuilles_ete[i]);
+      }
+      anime_ete = setInterval(animation_ete, 5);
     }
-    anime_ete = setInterval(animation_ete, 5);
-  }
 
-  else if ((mois_precedent > 4 && mois_precedent < 8) && (month < 5 || month > 7)) { // MOIS CORRESPONDANT PAS À L'ÉTÉ, L'ÉTÉ VENAIT AVANT
-    for (let i = 0; i < nombre_feuilles_ete; i++) {
-      document.body.removeChild(feuilles_ete[i]);
+    else if ((mois_precedent > 4 && mois_precedent < 8) && (month < 5 || month > 7)) { // MOIS CORRESPONDANT PAS À L'ÉTÉ, L'ÉTÉ VENAIT AVANT
+      for (let i = 0; i < nombre_feuilles_ete; i++) {
+        document.body.removeChild(feuilles_ete[i]);
+      }
+      clearInterval(anime_ete);
     }
-    clearInterval(anime_ete);
-  }
 
-  if (((month > 1 && month < 5) && ((mois_precedent < 2 || mois_precedent > 4) || mois_precedent == undefined))) { // MOIS CORRESPONDANT AU PRINTEMPS , LE PRINTEMPS VENAIT PAS AVANT
-    change_arriere_plan("images/spring.jpg");
-    for (let i = 0; i < nombre_gouttes; i++) {
-      document.body.appendChild(gouttes[i]);
+    if (((month > 1 && month < 5) && ((mois_precedent < 2 || mois_precedent > 4) || mois_precedent == undefined))) { // MOIS CORRESPONDANT AU PRINTEMPS , LE PRINTEMPS VENAIT PAS AVANT
+      change_arriere_plan("images/spring.jpg");
+      for (let i = 0; i < nombre_gouttes; i++) {
+        document.body.appendChild(gouttes[i]);
+      }
+      anime_printemps = setInterval(animation_printemps, 5);
     }
-    anime_printemps = setInterval(animation_printemps, 5);
-  }
 
-  else if ((mois_precedent > 1 && mois_precedent < 5) && (month < 2 || month > 4)) {
-    for (let i = 0; i < nombre_gouttes; i++) {
-      document.body.removeChild(gouttes[i]);
+    else if ((mois_precedent > 1 && mois_precedent < 5) && (month < 2 || month > 4)) {
+      for (let i = 0; i < nombre_gouttes; i++) {
+        document.body.removeChild(gouttes[i]);
+      }
+      clearInterval(anime_printemps);
     }
-    clearInterval(anime_printemps);
   }
 
   // Chargement des évènements
