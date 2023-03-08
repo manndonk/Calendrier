@@ -318,7 +318,7 @@ function load() {
         const element_evenement = document.createElement("newevents");
         element_evenement.addEventListener("click", function (event) {
           event.stopPropagation();
-          // ADD MORRE SHIT HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
+          // ADD MORRE HERE MANNDON TO MAKE THE EVENT DESCRIPTION SHOW ON CLICK
         });
         element_evenement.style.backgroundColor = evenements[i][2];
         element_evenement.style.height = "5px";
