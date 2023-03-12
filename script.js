@@ -138,7 +138,12 @@ function remplir(numero) {
 }
 
 function annuler() {
-  document.getElementById("creation_evenement").style.display = "none";
+  document.getElementById("creation_evenement").style.transform = "translateX(-450px)";
+  document.getElementById("creation_evenement").style.zIndex = "-1";
+  document.getElementById("container").style.transform = "translateX(0)"
+  setTimeout(() => {
+    document.getElementById("container").style.transform = "translateX(0)"
+  }, 500);
 }
 
 function creer_evenement() {
@@ -148,7 +153,12 @@ function creer_evenement() {
   document.getElementById('lieu').value = '';
   document.getElementById('couleur').value = "#d58585";
   document.getElementById('time').value = "00:00";
-  document.getElementById("creation_evenement").style.display = "none";
+  document.getElementById("creation_evenement").style.transform = "translateX(-450px)";
+  document.getElementById("creation_evenement").style.zIndex = "-1";
+  document.getElementById("container").style.transform = "translateX(0)"
+  setTimeout(() => {
+    document.getElementById("container").style.transform = "translateX(0)"
+  }, 500);
   evenements.push(evenement);
   load();
 }
@@ -235,7 +245,11 @@ function load() {
       daySquare.addEventListener("click", function () {
         date_selection = this.jour_num;
         port.innerHTML = '<button id="import" onclick="changer();"><i class="fa-solid fa-upload"></i></button><button id="export" onclick="exporter();"><i class="fa-solid fa-download"></i></button>';
-        document.getElementById("creation_evenement").style.display = "flex";
+        document.getElementById("container").style.transform = "translateX(-153px)"
+        setTimeout(() => {
+          document.getElementById("creation_evenement").style.transform = "translateX(-160.5px)";
+          document.getElementById("creation_evenement").style.zIndex = "1";
+        }, 500);
       })
 
       if (i - paddingDays === day && nav === 0) {
@@ -326,18 +340,15 @@ function load() {
         element_evenement.style.transition = "all 0.5s ease";
         element_evenement.style.textAlign = 'center';
         element_evenement.addEventListener('mouseover', () => {
-          element_evenement.style.transform = 'scale(110%)';
-          element_evenement.style.height = "fit-content";
-          setTimeout(() => {
-          element_evenement.innerHTML = evenements[i][0];
-          }, 500);
-
-        })
+        element_evenement.style.transform = 'scale(110%)';
+        element_evenement.style.height = "fit-content";
+        element_evenement.innerHTML = evenements[i][0];
+      })
         element_evenement.addEventListener('mouseout', () => {
-          element_evenement.innerHTML = '';
-          element_evenement.style.transform = 'scale(100%)';
-          element_evenement.style.height = '5px';
-        })
+        element_evenement.innerHTML = '';
+        element_evenement.style.transform = 'scale(100%)';
+        element_evenement.style.height = '5px';
+      })
 
         const carre_jour = document.querySelectorAll(".day")[parseInt(evenements[i][3].slice(0, 2)) + paddingDays - 1];
         carre_jour.style.display = "flex";
