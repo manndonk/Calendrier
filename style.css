@@ -82,6 +82,11 @@ textarea {
 
 #dezoom {
   display: none;
+  background: var(--black);
+  padding: 30px 10px 10px;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
 }
 
 #dezoom > a > div {
@@ -95,9 +100,9 @@ textarea {
   margin: 5px;
   box-shadow: 0px 0px 3px #CBD4C2;
   display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 80px;
+  line-height: 30px;
+  align-items: center;
+  font-weight: bold;
 }
 
 #dezoom > a > div:hover {
@@ -105,8 +110,14 @@ textarea {
   transition: all 0.2s ease-out;
 }
 
-#prev_annuelle {
+#prev_annuelle, #next_annuelle {
   display: inline;
+  background-color: transparent;
+}
+
+#prev_annuelle:hover, #next_annuelle:hover {
+  background-color: var(--offblack);
+  border: var(--greydark) 1px solid;
 }
 
 #afficheAnDezoom {
@@ -115,7 +126,7 @@ textarea {
   padding-left: 20px;
   padding-right: 20px;
   margin: 0px;
-  color: white;
+  color: var(--white);
 }
 
 #change_date {
@@ -174,6 +185,7 @@ textarea {
 }
 
 #creation_evenement{
+  display: flex;
   transform: translateX(-450px);
   box-sizing: border-box;
   margin: 170px 10px 0 20px;
