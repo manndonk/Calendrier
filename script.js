@@ -8,7 +8,7 @@ const calendrier = document.getElementById('calendar'); // On stocke l'objet HTM
 const jours_semaine = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']; // Création de la liste stockant les jours de la semaine en ordre
 
 let selection; // Initialisation de la variable, qui va stocker la dernière date ou le dernier évènement cliqué par l'utilisateur
-const evenements = []; // Initialisation de la liste evenements, qui va stocker les évènement crées par l'utilisateur
+let evenements = []; // Initialisation de la liste evenements, qui va stocker les évènement crées par l'utilisateur
 
 let en_zoom = true; // Initialisation du booléen en_zoom, qui va s'en souvenir la vision actuelle (annuelle = false, ou mensuelle = true)
 function dezoom() { // Fonction éxécutée lorsqu'on clique sur le bouton pour entrer en vision annuelle
