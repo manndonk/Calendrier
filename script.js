@@ -215,7 +215,7 @@ function importer() { // Fonction éxécutée lorsqu'un fichier est mis pour êt
       donnees[i] = donnees[i].split(";").slice(0, -1); // Transformation des chaînes de caractères en liste pour obtenir le bon format
     }
     evenements = donnees; // Stockage des évènements dans la variable evenements
-    // Les bouttons "Importer" et "Exporter" sont ré-affichés
+    // Les boutons "Importer" et "Exporter" sont ré-affichés
     port.innerHTML = '<button id="import" onclick="changer();"><i class="fa-solid fa-upload"></i></button><button id="export" onclick="exporter();"><i class="fa-solid fa-download"></i></button>';
     load(); // Rechargement du calendrier pour afficher les évènements
   }
@@ -254,7 +254,7 @@ function load() {
 
       carreJour.addEventListener("click", function () { // Définit les instructions à éxecuter lorsqu'on clique sur un carré
         selection = this.date; // Stocke la date du jour selectionné dans la variable selection
-        // Ré-affichage des bouttons "importer" et "exporter" (au cas où l'utilisateur clique sur "importer" par accident, et ne peut donc plus "exporter" un fichier)
+        // Ré-affichage des boutons "importer" et "exporter" (au cas où l'utilisateur clique sur "importer" par accident, et ne peut donc plus "exporter" un fichier)
         port.innerHTML = '<button id="import" onclick="changer();"><i class="fa-solid fa-upload"></i></button><button id="export" onclick="exporter();"><i class="fa-solid fa-download"></i></button>';
         document.getElementById("container").style.transform = "translateX(-153px)"; // Déplace le calendrier vers la gauche
         setTimeout(() => { // Les prochains instructions sont éxecutées avec un delai de 500 ms
@@ -347,7 +347,7 @@ function load() {
           document.getElementById('couleur').value = evenements[i][2];
           document.getElementById('lieu').value = evenements[i][3];
           document.getElementById('time').value = evenements[i][4];
-          // Ré-affichage des bouttons "importer" et "exporter" (au cas où l'utilisateur clique sur "importer" par accident, et ne peut donc plus "exporter" un fichier)
+          // Ré-affichage des boutons "importer" et "exporter" (au cas où l'utilisateur clique sur "importer" par accident, et ne peut donc plus "exporter" un fichier)
           port.innerHTML = '<button id="import" onclick="changer();"><i class="fa-solid fa-upload"></i></button><button id="export" onclick="exporter();"><i class="fa-solid fa-download"></i></button>';
           document.getElementById("container").style.transform = "translateX(-153px)"; // Déplace le calendrier vers la gauche
           setTimeout(() => { // Les prochains instructions sont éxecutées avec un delai de 500 ms
@@ -384,8 +384,8 @@ function load() {
   }
 }
 
-mois_vue_annuelle = document.querySelectorAll("#dezoom > a"); // Stocke tous les éléments correspondant aux bouttons pour les mois dans la vision annuelle
-for (let i = 0; i < mois_vue_annuelle.length; i++) { // Pour chaque boutton des mois
+mois_vue_annuelle = document.querySelectorAll("#dezoom > a"); // Stocke tous les éléments correspondant aux boutons pour les mois dans la vision annuelle
+for (let i = 0; i < mois_vue_annuelle.length; i++) { // Pour chaque bouton des mois
   mois_vue_annuelle[i].addEventListener("click", mois_cliquer); // Éxécute la fonction mois_cliquer lorsqu'on clique sur ce mois
 }
 
@@ -409,7 +409,7 @@ function mois_cliquer() { // Fonction éxécutée lorsqu'on clique sur un mois d
   load();
 }
 
-// Initialisation des bouttons
+// Initialisation des boutons
 document.getElementById('next').addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe au prochain mois
   mois_precedent = mois; // La varaible mois_precedent prend la valeur de la variable mois avant son changement
   nav++; // Ajoute 1 à la varaible nav
