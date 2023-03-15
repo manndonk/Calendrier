@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+
+body {
+    background-image: url("images/arriereplan.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	font-family: "Source Sans Pro", sans-serif;
+}
+
+#container {
+    margin: 30px auto;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 4.5rem 2.5rem 1.5rem 2.5rem ;
+    width: 40rem;
+    max-width: 100%;
+    color: #fff;
+    background-color: rgba(27, 31, 34, 0.85);
+    border-radius: 10px;
+}
+
+.intro > * {
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+h2{
+    margin-bottom: 20px;
+    border-bottom: solid 1px #ffffff;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: -ms-max-content;
+    width: max-content;
+    padding-bottom: 0.5rem;
+    margin: 0 0 2rem 0;
+}
+
+.para > p {
+    margin: 20px;
+    font-size: 1.25rem;
+}

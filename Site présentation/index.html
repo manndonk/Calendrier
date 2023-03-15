@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IHMWeb1</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="position">
+            <div id="container">
+                <div class="intro">
+                    <h2>Mini-projet 2 :</h2>
+                    <h3>Fait par Manndon, Mehmet et LEO</h3>
+                </div>
+                <div class="para">
+                    <p>
+                        La presentation : 
+                        Ce projet consiste d’un calendrier avec un système d’évènements, une vision par mois et une vision par année. Il consiste aussi d’animations et des fonts d’écrans unique à chaque saison de l’année. Pour la partie présentation, Léo va vous expliquer la base du calendrier, je vais vous expliquer le système d’animations, et finalement Manndon va vous expliquer le système d’évènements.
+                        <br><br>
+                        <img src="" width="500px" height="250px">
+                        <br><br>
+                        En premier lieu, la fonction load() est le cœur du programme et permet d’afficher le calendrier ainsi que faire fonctionner les boutons, les évènements et les animations. 
+                        <br><br>
+                        Création des "boites" du calendrier et calcul des « jours_blancs » ou des jours du mois précédents ainsi que l’ajout des styles des 3 types de boites. 
+                        <br><br>
+                        L'initialisation des boutons 
+                    </p>
+                    <p>
+                        <h3>Le système des évènements</h3>
+                        <img src="images/p1.png" width="600px" height="auto"><br>
+                        Tout d’abord, au début du programme, on initialise 2 variables :<br>
+                        <ul>
+                            <li>Une liste, pour stocker tous les évènements</li>
+                            <li>Une variable qu’on appelle « selection » pour stocker soit un nombre, qui représente l’index d’un évènement cliqué dans la liste « evenements », ou une chaîne de caractère, qui correspond à la date d’un jour cliqué.</li>
+                        </ul>
+                        <img src="images/p2.png" style="width: 650px;">
+                        Par la suite, dans la fonction load(), on définit pour chaque jour les instructions à exécuter lorsqu’on clique dessus avec « carreJour.addEventListener ». Ainsi, lorsqu’un jour est cliqué, on affecte à une variable globale nommé « selection » la date du jour du carré cliqué, puis on fait apparaître l’interface de la création d’un évènement en le glissant vers la droite avec « document.getElementById(‘’creation_evenement’’).style.transform = ‘’translateX(-160.5px)’’ ; ».
+                        <br>
+                        On définit également les instructions à exécuter lorsqu’on clique sur un évènement pour le modifier :
+                        <img src="images/p3.png" style="width: 670px">
+                        Cette fois, on fait de même glisser l’interface de création d’évènement, mais cette fois on stocke dans la variable « selection » l’index de l’évènement cliqué dans la liste des évènements, puis on remplit les espaces de saisies avec les données de l’évènements. 
+                        Voici l’interface graphique qui apparait, avec les différentes saisies acceptées :<br>
+                        <img src="images/p4.png" width="300px" height="auto"><img src="images/p5.png" width="300px" height="auto">
+                        Lorsqu’on clique sur le bouton « Sauvegarder », la fonction « creer_evenement() » est exécutée :
+                        <img src="images/p10.png" width="650px"><br><img src="images/p11.png" width="650px"><br>
+                        Si on modifie un évènement, alors la variable selection est un nombre, et on met a jour chaque élément de l’évènement sauf la date.
+                        Si on crée un évènement, on initier une nouvelle liste qui contient les détails de l’évènement, puis on l’ajoute à la liste contenant tous les évènements.
+                        On va ensuite dans tous les effacer le texte écrit dans les saisies pour la prochaine fois, et on recache l’interface de création d’évènement.
+                        Enfin, on appelle la fonction load pour faire apparaître ce nouveau évènement.
+                
+                        Nous avons également le bouton qui appelle la fonction annuler, qui efface le contenu dans les saisies, et cache l’interface de création d’évènement.
+                        <img src="images/p7.png" width="650px">
+                        Par la suite, pour le système d’importation et d’exportation de fichier, on a créé 2 boutons, qui exécutent respectivement les fonctions importer() et exporter().
+                        <img src="images/p8.png" width="650px">
+                        La fonction exporter permet à l’utilisateur de télécharger un fichier contenant les données de ses évènements.
+                        À l’aide de 2 loop for, on traverse tous les détails de chaque évènement, puis on les écrit sous la forme d’une chaîne de caractères suivant le format CSV.
+                        On crée ensuite un élément HTML « a » temporaire pour faire télécharger le fichier.
+                        <img src="images/p9.png" width="650px">
+                        La fonction importer() est exécutée lorsqu’un fichier est mis à disposition par l’utilisateur,
+                        Cette fonction lit le fichier grâce à l’objet javascript FileReader(), puis va convertir les données textuelles en liste pour ensuite charger tous les évènements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
