@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IHMWeb1</title>
+        <title>Présentation Calendrier</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -13,12 +13,142 @@
                     <h2>Mini-projet 2 :</h2>
                     <h3>Fait par Manndon, Mehmet et LEO</h3>
                 </div>
+                <div>
+                    <h3>Le cahier des charges:</h3>
+                    <p>Le projet consiste à créer un calendrier, en HTML, CSS et JavaScript, qui permet aux utilisateurs de visualiser les jours et les années.</p>
+                    <h4>Fonctionnalités :</h4>
+                    <p>Le calendrier doit être capable de réaliser les fonctionnalités suivantes :</p>
+                    <ul>
+                        <li>Afficher les jours et les mois</li>
+                        <li>Basculer entre vision mensuelle et vision annuelle</li>
+                        <li>Ajouter des événements à une date spécifique</li>
+                        <li>Modifier un événement existant</li>
+                        <li>Afficher les événements d'une journée</li>
+                        <li>Changer l'arrière-plan en fonction de la saison</li>
+                        <li>Intégrer des animations en arrière-plan</li>
+                        <li>Importer/Exporter des fichiers pour sauvegarder les évènements</li>
+                    </ul>
+                    <h3>Le cahier des charges fonctionnels:</h3>
+                    <table>
+                        <tr>
+                            <th>Fonction</th>
+                            <th>Entrée(s)</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Interface boutons, pour changer mois/an</td>
+                        </tr>
+                        <tr>
+                            <td>initBoutons</td>
+                            <td>Aucun</td>
+                            <td>Cette fonction définit les instructions à exécuter lorsqu’on clique sur les boutons, soit changer le mois affiché si on est en vision mensuelle, ou changer l’an affiché si on est en vision annuelle.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Chargement du Calendrier – Vision mensuelle</td>
+                        </tr>
+                        <tr>
+                            <td>load</td>
+                            <td>Aucun</td>
+                            <td>Met à jour le nom du mois et de l’an.<br><br>Crée un nouveau div pour chaque jour du mois. Lorsqu’un de ces divs est cliqué, modifie la variable selection, et fait afficher une interface de création d’évènement.<br><br>Changement de l’animation et de l’arrière-plan (avec la fonction change_arriere_plan, et les fonctions d’animations).<br><br>Affichage des évènements sur le calendrier. Lorsqu’un évènement est cliqué, afficher l’interface de création d’évènement, pour le modifier, et modifie la variable sélection.<br><br>Cette fonction emploie la fonction remplir, afin d’avoir un format standard pour les dates.</td>
+                        </tr>
+                        <tr>
+                            <td>change_arriere_plan</td>
+                            <td>Chaîne de caractère contenant le trajet vers une image</td>
+                            <td>Modifie l’image de l’arrière-plan.</td>
+                        </tr>
+                        <tr>
+                            <td>remplir</td>
+                            <td>Un nombre</td>
+                            <td>Transforme le nombre en chaîne de caractère, puis ajoute un zéro antécédent si la longueur de la chaîne est 1.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Animations</td>
+                        </tr>
+                        <tr>
+                            <td>creer_elements_animes</td>
+                            <td>Aucun</td>
+                            <td>Remplit les listes de div qui seront animés.</td>
+                        </tr>
+                        <tr>
+                            <td>animation_ete</td>
+                            <td>Aucun</td>
+                            <td>Déplace chaque div dans la liste feuilles_ete. Fait descendre chaque div par quelques pixels, et les fait tourner de quelques degrés.</td>
+                        </tr>
+                        <tr>
+                            <td>animation_automne</td>
+                            <td>Aucun</td>
+                            <td>Déplace chaque div dans la liste feuilles_automne. Fait descendre chaque div de quelques pixels, et les fait tourner de quelques degrés.</td>
+                        </tr>
+                        <tr>
+                            <td>animation_printemps</td>
+                            <td>Aucun</td>
+                            <td>Déplace chaque div dans la liste gouttes. Fait descendre chaque div de plusieurs pixels.</td>
+                        </tr>
+                        <tr>
+                            <td>animation_hiver</td>
+                            <td>Aucun</td>
+                            <td>Déplace chaque div dans la liste neiges. Fait descendre chaque div de quelques pixels.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Chargement du Calendrier – Vision annuelle</td>
+                        </tr>
+                        <tr>
+                            <td>dezoom</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu’on clique sur le bouton pour entrer en vision annuelle.<br><br>Fait disparaître les éléments de la vision mensuelle, et fait apparaître ceux de la vision annuelle.<br><br>Modifie le booléen en_zoom.</td>
+                        </tr>
+                        <tr>
+                            <td>mois_cliquer</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'on clique sur un mois dans la vision annuelle.<br><br>Fait apparaître les éléments de la vision mensuelle, et fait disparaître ceux de la vision annuelle.<br><br>Modifie le booléen en_zoom.<br><br>Modifie la variable nav pour  charger la date correcte en vision mensuelle.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Interface de création d’évènement</td>
+                        </tr>
+                        <tr>
+                            <td>creer_evenement</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'on clique sur le bouton « Sauvegarder ».<br><br>Selon la variable selection, créer un nouvel évènement ou modifie un évènement existant, en obtenant les valeurs dans les saisies.<br><br>Remet à défaut les champs de saisie.<br><br>Cache l’interface de création d’évènement.</td>
+                        </tr>
+                        <tr>
+                            <td>annuler</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'on clique sur le bouton « Annuler ».<br><br>Remet à défaut les champs de saisie.<br><br>Cache l’interface de création d’évènement.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Interface d’importation/exportation de fichier</td>
+                        </tr>
+                        <tr>
+                            <td>changer</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'on clique sur le bouton pour importer un fichier contenant les données d’évènement.<br><br>Fait disparaître les boutons importer/exporter, et fait apparaître un élément HTML pour recevoir un fichier.</td>
+                        </tr>
+                        <tr>
+                            <td>exporter</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'on clique sur le bouton pour exporter les évènements dans un fichier.<br><br>Selon le format CSV, écrit les données des évènements, contenus dans la liste evenement, puis le fait télécharger pour l'utilisateur.</td>
+                        </tr>
+                        <tr>
+                            <td>importer</td>
+                            <td>Aucun</td>
+                            <td>Fonction exécutée lorsqu'un fichier est mis pour être importé.<br><br>Lit le fichier, puis met à jour la liste evenement.<br><br>Fait apparaitre les boutons pour importer/exporter.</td>
+                        </tr>
+                        
+                    </table>
+                    <h3>Répartition du travail:</h3>
+                    <p>Léo: Conception du calendrier de base et le CSS.</p>
+                    <p>Manndon: Création du système d'évènement, avec le systeme d'importation et d'exportation.</p>
+                    <p>Mehmet: Intégration du système d'animation.</p>
+                    <h3>Progression du projet:</h3>
+                    <p>Au cours de la première semaine, Léo a expérimenté différentes façons de créer le calendrier. Durant le weekend de la deuxième semaine, il a finalisé le calendrier en ajoutant la fonction load(). La troisième semaine a été la plus productive, avec Manndon qui s'est occupé du système d'événements, Mehmet qui a créé des animations, et Léo qui a majoritairement travaillé sur le CSS. Enfin, durant la quatrième semaine, le projet a été perfectionné avec l'invention par Manndon de la vue annuelle et la création par Léo d'une animation fluide pour l'ouverture des fenêtres.</p>
+                </div>
                 <div class="para">
+                    <h3>La presentation :</h3>
                     <p>
-                        La presentation : 
+                        <h3>Le calendrier de base</h3>
                         Ce projet consiste d’un calendrier avec un système d’évènements, une vision par mois et une vision par année. Il consiste aussi d’animations et des fonts d’écrans unique à chaque saison de l’année. Pour la partie présentation, Léo va vous expliquer la base du calendrier, je vais vous expliquer le système d’animations, et finalement Manndon va vous expliquer le système d’évènements.
                         <br><br>
-                        <img src="" width="500px" height="250px">
+                        <img src="images/load.png" width="650px" height="250px">
                         <br><br>
                         En premier lieu, la fonction load() est le cœur du programme et permet d’afficher le calendrier ainsi que faire fonctionner les boutons, les évènements et les animations. 
                         <br><br>
@@ -27,7 +157,7 @@
                         L'initialisation des boutons 
                     </p>
                     <p>
-                        <h3>Le système des évènements</h3>
+                        <h3>Le système des animations</h3>
                         Premièrement, il faut créer des listes pour tous les éléments animés
                         <img src="images/i1.png" style="width: 670px">
                         Choisir une concentration pour chaque élément 

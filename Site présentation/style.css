@@ -40,6 +40,15 @@ h2{
     margin: 0 0 2rem 0;
 }
 
+table, td, th {
+    border: 1px solid white;
+ }
+
+ td, th {
+     width: 300px;
+     text-align: center;
+ }
+
 .para > p {
     margin: 20px;
     font-size: 1.25rem;
