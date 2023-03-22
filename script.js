@@ -410,44 +410,47 @@ function mois_cliquer() { // Fonction éxécutée lorsqu'on clique sur un mois d
 }
 
 // Initialisation des boutons
-document.getElementById('next').addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe au prochain mois
-  mois_precedent = mois; // La varaible mois_precedent prend la valeur de la variable mois avant son changement
-  nav++; // Ajoute 1 à la varaible nav
-  load(); // Met à jour l'affichage du calendrier
-});
+function initBoutons() {
+  document.getElementById('next').addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe au prochain mois
+    mois_precedent = mois; // La varaible mois_precedent prend la valeur de la variable mois avant son changement
+    nav++; // Ajoute 1 à la varaible nav
+    load(); // Met à jour l'affichage du calendrier
+  });
 
-document.getElementById('prev').addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe au mois précédent
-  mois_precedent = mois; // La varaible mois_precedent prend la valeur de la variable mois avant son changement
-  nav--; // Soustrait 1 à la varaible nav
-  load(); // Met à jour l'affichage du calendrier
-});
+  document.getElementById('prev').addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe au mois précédent
+    mois_precedent = mois; // La varaible mois_precedent prend la valeur de la variable mois avant son changement
+    nav--; // Soustrait 1 à la varaible nav
+    load(); // Met à jour l'affichage du calendrier
+  });
 
-document.getElementById("next_annuelle").addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe à l'an prochain dans la vision annuelle
-  an_vision_annuelle++; // Ajoute 1 à la variable an_vision_annuelle
-  document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle; // Met à jour le texte affichant l'an dans la vision annuelle
-})
-document.getElementById("prev_annuelle").addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe à l'an précédent dans la vision annuelle
-  an_vision_annuelle--; // Ajoute 1 à la variable an_vision_annuelle
-  document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle; // Met à jour le texte affichant l'an dans la vision annuelle
-})
+  document.getElementById("next_annuelle").addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe à l'an prochain dans la vision annuelle
+    an_vision_annuelle++; // Ajoute 1 à la variable an_vision_annuelle
+    document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle; // Met à jour le texte affichant l'an dans la vision annuelle
+  })
+  document.getElementById("prev_annuelle").addEventListener('click', () => { // Instructions éxécutées lorsqu'on passe à l'an précédent dans la vision annuelle
+    an_vision_annuelle--; // Ajoute 1 à la variable an_vision_annuelle
+    document.getElementById("afficheAnDezoom").innerText = an_vision_annuelle; // Met à jour le texte affichant l'an dans la vision annuelle
+  })
 
-document.onkeydown = function (touche) { // Lorsqu'une touche est pressée
-  if (en_zoom) { // Si on est dans la vision mensuelle
-    if (touche.key == 'ArrowLeft') { // Si la touche pressée est la flèche gauche
-      document.getElementById('prev').click(); // Passe au mois précédent
+  document.onkeydown = function (touche) { // Lorsqu'une touche est pressée
+    if (en_zoom) { // Si on est dans la vision mensuelle
+      if (touche.key == 'ArrowLeft') { // Si la touche pressée est la flèche gauche
+        document.getElementById('prev').click(); // Passe au mois précédent
+      }
+      else if (touche.key == 'ArrowRight') { // Si la touche pressée est la flèche droite
+        document.getElementById('next').click(); // Passe au prochain mois
+      }
     }
-    else if (touche.key == 'ArrowRight') { // Si la touche pressée est la flèche droite
-      document.getElementById('next').click(); // Passe au prochain mois
-    }
-  }
-  else { // Si on est dans la vision annuelle
-    if (touche.key == 'ArrowLeft') { // Si la touche pressée est la flèche gauche
-      document.getElementById('prev_annuelle').click(); // Passe à l'an précédent
-    }
-    else if (touche.key == 'ArrowRight') { // Si la touche pressée est la flèche droite
-      document.getElementById('next_annuelle').click(); // Passe à l'an prochain
+    else { // Si on est dans la vision annuelle
+      if (touche.key == 'ArrowLeft') { // Si la touche pressée est la flèche gauche
+        document.getElementById('prev_annuelle').click(); // Passe à l'an précédent
+      }
+      else if (touche.key == 'ArrowRight') { // Si la touche pressée est la flèche droite
+        document.getElementById('next_annuelle').click(); // Passe à l'an prochain
+      }
     }
   }
 }
 
+initBoutons();
 load(); // Affiche le calendrier à l'écran
