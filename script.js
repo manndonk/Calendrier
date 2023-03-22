@@ -49,36 +49,38 @@ let anime_printemps;
 let anime_hiver;
 
 // On remplit chaque listes liées aux animations avec leurs éléments à animés
-for (let i = 0; i < nombre_feuilles_ete; i++) { // Pour l'été
-  const feuille = document.createElement("div"); // Création d'un élément div
-  feuille.setAttribute("class", "feuille_ete"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une feuille verte
-  feuille.y = Math.random()*window.innerHeight; // Placement aléatoire de la feuille sur l'axe vertical
-  feuille.x = i*window.innerWidth/nombre_feuilles_ete; // Placement unique pour chaque feuille pour avoir une dispersion égale à travers l'écran
-  feuille.rotation = Math.random()*360; // Initialise la rotation de la feuille à un angle aléatoire
-  feuilles_ete.push(feuille); // Cette feuille est ajoutée à la liste des éléments à animés pour l'été
-}
-for (let i = 0; i < nombre_feuilles_automne; i++) { // Pour l'automne
-  const feuille = document.createElement("div"); // Création d'un élément div
-  feuille.setAttribute("class", "feuille_automne"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une feuille orange
-  feuille.y = Math.random()*window.innerHeight; // Placement aléatoire de la feuille sur l'axe vertical
-  feuille.x = i*window.innerWidth/nombre_feuilles_automne; // Placement unique pour chaque feuille pour avoir une dispersion égale à travers l'écran
-  feuille.rotation = Math.random()*360; // Initialise la rotation de la feuille à un angle aléatoire
-  feuilles_automne.push(feuille); // Cette feuille est ajoutée à la liste des éléments à animés pour l'automne
-}
-for (let i = 0; i < nombre_gouttes; i++) { // Pour le printemps
-  const goutte = document.createElement("div"); // Création d'un élément div
-  goutte.setAttribute("class", "goutte"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une goutte
-  goutte.y = Math.random()*window.innerHeight; // Placement aléatoire de la goutte sur l'axe vertical
-  goutte.x = i*window.innerWidth/nombre_gouttes; // Placement unique pour chaque goutte pour avoir une dispersion égale à travers l'écran
-  goutte.style.left = goutte.x.toString() + "px"; // Placement de la goutte sur l'écran
-  gouttes.push(goutte); // Cette goutte est ajoutée à la liste des éléments à animés pour le printemps
-}
-for (let i = 0; i < nombre_neiges; i++) { // Pour l'hiver
-  const neige = document.createElement("div"); // Création d'un élément div
-  neige.setAttribute("class", "neige"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme un flacon de neige
-  neige.y = Math.random()*window.innerHeight; // Placement aléatoire du flacon sur l'axe vertical
-  neige.x = i*window.innerWidth/nombre_neiges; // Placement unique pour chaque flacon pour avoir une dispersion égale à travers l'écran
-  neiges.push(neige); // Ce flacon est ajouté à la liste des éléments à animés pour l'hiver
+function creer_elements_animes() {
+  for (let i = 0; i < nombre_feuilles_ete; i++) { // Pour l'été
+    const feuille = document.createElement("div"); // Création d'un élément div
+    feuille.setAttribute("class", "feuille_ete"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une feuille verte
+    feuille.y = Math.random()*window.innerHeight; // Placement aléatoire de la feuille sur l'axe vertical
+    feuille.x = i*window.innerWidth/nombre_feuilles_ete; // Placement unique pour chaque feuille pour avoir une dispersion égale à travers l'écran
+    feuille.rotation = Math.random()*360; // Initialise la rotation de la feuille à un angle aléatoire
+    feuilles_ete.push(feuille); // Cette feuille est ajoutée à la liste des éléments à animés pour l'été
+  }
+  for (let i = 0; i < nombre_feuilles_automne; i++) { // Pour l'automne
+    const feuille = document.createElement("div"); // Création d'un élément div
+    feuille.setAttribute("class", "feuille_automne"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une feuille orange
+    feuille.y = Math.random()*window.innerHeight; // Placement aléatoire de la feuille sur l'axe vertical
+    feuille.x = i*window.innerWidth/nombre_feuilles_automne; // Placement unique pour chaque feuille pour avoir une dispersion égale à travers l'écran
+    feuille.rotation = Math.random()*360; // Initialise la rotation de la feuille à un angle aléatoire
+    feuilles_automne.push(feuille); // Cette feuille est ajoutée à la liste des éléments à animés pour l'automne
+  }
+  for (let i = 0; i < nombre_gouttes; i++) { // Pour le printemps
+    const goutte = document.createElement("div"); // Création d'un élément div
+    goutte.setAttribute("class", "goutte"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme une goutte
+    goutte.y = Math.random()*window.innerHeight; // Placement aléatoire de la goutte sur l'axe vertical
+    goutte.x = i*window.innerWidth/nombre_gouttes; // Placement unique pour chaque goutte pour avoir une dispersion égale à travers l'écran
+    goutte.style.left = goutte.x.toString() + "px"; // Placement de la goutte sur l'écran
+    gouttes.push(goutte); // Cette goutte est ajoutée à la liste des éléments à animés pour le printemps
+  }
+  for (let i = 0; i < nombre_neiges; i++) { // Pour l'hiver
+    const neige = document.createElement("div"); // Création d'un élément div
+    neige.setAttribute("class", "neige"); // Grâce au fichier "style.css", cette instruction va donner l'arrière plan au div pour lui faire apparaître comme un flacon de neige
+    neige.y = Math.random()*window.innerHeight; // Placement aléatoire du flacon sur l'axe vertical
+    neige.x = i*window.innerWidth/nombre_neiges; // Placement unique pour chaque flacon pour avoir une dispersion égale à travers l'écran
+    neiges.push(neige); // Ce flacon est ajouté à la liste des éléments à animés pour l'hiver
+  }
 }
 
 // Définition des fonction qui sont chargées d'animer les objets
@@ -452,5 +454,6 @@ function initBoutons() {
   }
 }
 
-initBoutons();
+initBoutons(); // Initialise les boutons
+creer_elements_animes(); // Créer les éléments à animer
 load(); // Affiche le calendrier à l'écran
